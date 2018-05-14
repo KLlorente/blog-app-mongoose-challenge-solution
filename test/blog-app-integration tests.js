@@ -5,7 +5,7 @@ const chaiHttp = require('chai-http');
 const faker = require('faker'); 
 const mongoose = require('mongoose'); 
 
-const expect chai.expect; 
+const expect = chai.expect; 
 
 const {BlogPost} = require ('../models'); 
 const {app, runServer, closeServer} = require('../server'); 
@@ -26,8 +26,8 @@ function seedBlogData() {
 
 function generateBlogData() {
 	return {
-		title: faker.lorem.sentence();
-		content: faker.lorem.paragraph();
+		title: faker.lorem.sentence(),
+		content: faker.lorem.paragraph(),
 		author: {
 			firstName: faker.name.firstName(), 
 			lastName: faker.name.lastName()
@@ -63,13 +63,13 @@ describe('Blog API resource', function () {
 			.get('/posts')
 			.then(function(_res) {
 				res = _res; 
-				epect(res).to.have.status(200); 
+				expect(res).to.have.status(200); 
 
 				expect(res.body.posts).to.have.lengthOf.at.least(1); 
 				return BlogPost.count(); 
 			})
 			.then(function(count) {
-				epect(res.body.posts).to.have.lengthOf(count); 
+				expect(res.body.posts).to.have.lengthOf(count); 
 			}); 
 		});
 
@@ -113,7 +113,7 @@ describe('Blog API resource', function () {
 				expect(res).to.be.json;
 				expect(res.body).to.be.a('object'); 
 				expect(res.body).to.include.keys('id', 'title', 'content', 'author'); 
-				epect(res.body.name).to.equal(newPost.name); 
+				expect(res.body.name).to.equal(newPost.name); 
 				expect(res.body.id).to.not.be.null; 
 				expect(res.body.title).to.equal(newPost.title); 
 				expect(res.body.content).to.equal(newPost.content); 
@@ -131,9 +131,9 @@ describe('Blog API resource', function () {
 		});
 	});
 
-	describe('PUT endpoint', function () {
+	describe('PUT endpoint', function() {
 
-		it('should update blog posts', function {
+		it('should update blog posts', function() {
 			const updateData = {
 				title: 'Update', 
 				content: 'update data update data update data sample',
@@ -161,7 +161,7 @@ describe('Blog API resource', function () {
 				expect(post.title).to.equal(updateData.title); 
 				expect(post.content).to.equal(updateData.content);
 				expect(post.author.firstName).to.equal(updateData.author.firstName);
-				expect(post.author.lastName).to.equal.(updateData.author.lastName);  
+				expect(post.author.lastName).to.equal(updateData.author.lastName);  
 			}); 
 		});
 	});
@@ -183,8 +183,8 @@ describe('Blog API resource', function () {
 			})
 			.then(function(_post) {
 			expect(_post).to.be.null;
-			}): 
-		}): 
+			}); 
+		});  
 	}); 
 });
 
