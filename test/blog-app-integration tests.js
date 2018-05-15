@@ -64,12 +64,12 @@ describe('Blog API resource', function () {
 			.then(function(_res) {
 				res = _res; 
 				expect(res).to.have.status(200); 
-
-				expect(res.body.posts).to.have.lengthOf.at.least(1); 
+				console.log(res.body); 
+				expect(res.body).to.have.lengthOf.at.least(1); 
 				return BlogPost.count(); 
 			})
 			.then(function(count) {
-				expect(res.body.posts).to.have.lengthOf(count); 
+				expect(res.body).to.have.lengthOf(count); 
 			}); 
 		});
 
@@ -81,21 +81,21 @@ describe('Blog API resource', function () {
 			.then(function(res) {
 				expect(res).to.have.status(200); 
 				expect(res).to.be.json; 
-				expect(res.body.posts).to.be.a('array'); 
-				expoect(res.body.posts).to.have.lengthOf.at.least(1);
+				expect(res.body).to.be.a('array'); 
+				expect(res.body).to.have.lengthOf.at.least(1);
 
-				res.body.posts.forEach(function(post) {
-					expect(post).to.be.a('object)'); 
+				res.body.forEach(function(post) {
+					expect(post).to.be.an('object'); 
 					expect(post).to.include.keys('id', 'title', 'content', 'author'); 
 				}); 
 
-				resPost = res.body.posts[0]; 
+				resPost = res.body[0]; 
 				return BlogPost.findById(resPost.id);  
 			})
 			.then(function(post) {
 				expect(resPost.id).to.equal(post.id);
 				expect(resPost.title).to.equal(post.title); 
-				expect(resPost.author).to.equal(post.author);  
+				expect(resPost.author).to.equal(`${post.author.firstName} ${post.author.lastName}`);  
 			});
 		}); 
 	}); 
@@ -175,7 +175,7 @@ describe('Blog API resource', function () {
 			.findOne()
 			.then(function(_post) {
 				post=_post; 
-				return chai.request(app).delete(`/post/${post.id}`); 
+				return chai.request(app).delete(`/posts/${post.id}`); 
 			})
 			.then(function(res) {
 				expect (res).to.have.status(204); 
