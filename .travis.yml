@@ -1,4 +1,12 @@
 language: node_js
 node_js: node
 services:
-- mongodb 
+- mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: 5Z/HzoERKd1vVr1+YnzP1FRse4hePlAIhuj/Eg6visQDVrcN4CJlWbgw3ZPrjkfzeZbVjCcEekg+mgiw0grVlFDsABGMydCGDboFU/Lwa5G6wv52Edm/U3xHomZH7m15rW2WbGZWjvQuXJ1Nl35IHQZ9R2guPG23sJehdYK2BQV15Iy9zQK9nwSphox2wpJzvejFDqOUotik+/ioL3sE8iVTNf1RMsGoek6Uvs8YGPzPhQtwdlDMYGQPaJSP2C1x9H0k+bY5RfW4aAExDOmsPUvQQKPAbiwYIB4uaykC7XrHzdkvqV4X2rw0wcJZcWZlrBk/IzQEUoJ/b5EgTfsIchdAQe2W5yM/hgLHF3ulkVDuuYQJ4jEwKS0/J4LeRRYAFnwCsjvoULtdEvEYSO9I7cjw+ji8DZUa+ORYQy/2OFuf5rpPHjfFzkGyt4AkuBerJrELZY9SJAifoN7TSZhqGzp7lVP/8DzJiEq2kgG+a2oKgg+HX404bh9bkSCkqBiEFgbL8AZIsqDCeN3A+lS8/4DuzF1hODjluYD5xKG1FqL+7tOO458DIdaYxwJcF1rzQnRbA1KhavikqvzzfHI6hoNEFjYV4zy3IF/qVkikSICz2rL2T5hOfC8a26soXNBd4Prche9Gm8NLpyeCeiIMtedrgJtT3Rqa29fuSoa/i1c=
+  app: gentle-woodland-43596
+  on:
+    repo: KLlorente/blog-app-mongoose-challenge-solution
+    branch: feature/tests
